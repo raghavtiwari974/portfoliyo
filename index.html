@@ -1,0 +1,100 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <meta name="description" content="Neeraj Sharma - Digital Marketing & Data Analytics Professional. Expert in Tableau, Power BI, Excel, Google Ads, and Meta Ads with proven track record in data visualization and campaign management." />
+    <meta name="keywords" content="Data Analytics, Digital Marketing, Tableau, Power BI, Excel, Google Ads, Meta Ads, Business Intelligence, Data Visualization" />
+    <meta name="author" content="Neeraj Sharma" />
+    
+    <!-- Open Graph / Social Media -->
+    <meta property="og:type" content="website" />
+    <meta property="og:title" content="Neeraj Sharma - Digital Marketing & Data Analytics" />
+    <meta property="og:description" content="Professional portfolio showcasing expertise in data analytics, visualization, and digital marketing campaigns." />
+    <meta property="og:url" content="https://neerajsharma.dev" />
+    
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+    
+    <title>Neeraj Sharma - Digital Marketing & Data Analytics</title>
+    
+    <style>
+      /* Critical CSS for initial render */
+      body {
+        margin: 0;
+        padding: 0;
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+        background-color: #111827;
+        color: #ffffff;
+        overflow-x: hidden;
+      }
+      
+      /* Loading animation */
+      .loading-screen {
+        position: fixed;
+        inset: 0;
+        background: #111827;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        z-index: 9999;
+      }
+      
+      .loading-spinner {
+        width: 50px;
+        height: 50px;
+        border: 3px solid #374151;
+        border-top: 3px solid #3b82f6;
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+      
+      @keyframes spin {
+        0% { transform: rotate(0deg); }
+        100% { transform: rotate(360deg); }
+      }
+    </style>
+  </head>
+  <body>
+    <!-- Loading Screen -->
+    <div id="loading" class="loading-screen">
+      <div class="loading-spinner"></div>
+    </div>
+    
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    
+    <script>
+      // Hide loading screen when page loads
+      window.addEventListener('load', () => {
+        const loading = document.getElementById('loading');
+        if (loading) {
+          loading.style.opacity = '0';
+          setTimeout(() => loading.remove(), 500);
+        }
+      });
+      
+      // Performance optimization: lazy load images
+      if ('IntersectionObserver' in window) {
+        const imageObserver = new IntersectionObserver((entries, observer) => {
+          entries.forEach(entry => {
+            if (entry.isIntersecting) {
+              const img = entry.target;
+              img.src = img.dataset.src;
+              img.classList.remove('lazy');
+              observer.unobserve(img);
+            }
+          });
+        });
+        
+        document.addEventListener('DOMContentLoaded', () => {
+          const lazyImages = document.querySelectorAll('img[data-src]');
+          lazyImages.forEach(img => imageObserver.observe(img));
+        });
+      }
+    </script>
+  </body>
+</html>
